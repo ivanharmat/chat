@@ -251,6 +251,7 @@ body {
   height:15px;
   text-align:center;
   background-image:-webkit-linear-gradient(bottom, rgba(255,255,255, 0) 0%, rgba(255,255,255, 0.9) 100%);
+  background-image: -moz-linear-gradient(bottom, rgba(255,255,255, 0) 0%, rgba(255,255,255, 0.9) 100%);
 }
 .sms_bubble::after{
   content: "";
@@ -263,7 +264,9 @@ body {
   background: rgba(204,204,204,0.9);
   -webkit-box-shadow: rgba(0,0,0,0.3) 0px 3px 4px;
   background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.2) 20%, rgba(255,255,255, 0.5) 80%);
+  background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0.2) 20%, rgba(255,255,255, 0.5) 80%);
   -webkit-border-bottom-right-radius: 90px 70px;
+  border-bottom-right-radius: 90px 70px;
 }
 
 .sms_bubble p
@@ -364,6 +367,7 @@ body {
 {
   margin-top: 10px;
 }
+
 
 /* Landscape phones
 ------------------------- */

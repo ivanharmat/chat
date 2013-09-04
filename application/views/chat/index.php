@@ -5,6 +5,7 @@
 <?php if(isset($messages)):?>
 <input type="hidden" value="<?php echo count($messages);?>" id="offset">
 <div id="text_messages_div">
+	<input type="hidden" class="message_id" value="0">
 	<?php foreach($messages as $message):?>
 	<div class="row" >
 		<div class="span12">
@@ -21,6 +22,6 @@
 	<input type="hidden" class="message_id" value="<?php echo $message['id'];?>">
 	<?php endforeach;?>
 </div>
-<div id="new_messages"></div>
 <?php endif;?>
+<div id="new_messages"></div>
 <div id="bottom_message">

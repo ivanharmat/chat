@@ -10,7 +10,7 @@
     <link href="/skin/css/bootstrap.min.css" rel="stylesheet">
     <link href="/skin/css/docs.css" rel="stylesheet">
     <link href="/skin/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/skin/css/styles.css" rel="stylesheet">
+    <link href="/skin/css/styles.css?v1.1" rel="stylesheet">
     <link href="/skin/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->

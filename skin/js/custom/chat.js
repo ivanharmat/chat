@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var browser_height = $(window).height();  
-    $('#main_page').css('min-height', browser_height);
+    $('#main_page').css('min-height', browser_height - 130);
 
     var can_refresh = false;
 
@@ -14,10 +14,15 @@ $(document).ready(function(){
     else
     {
     	$('#chat_button').removeAttr('disabled');
-    	var position = $("#bottom_message").offset();
-		$('body,html').animate({
-			scrollTop: position.top
-		}, 1500);
+    	var offset = parseInt($('#offset').val());
+    	if(offset > 5)
+    	{
+    		var position = $("#bottom_message").offset();
+			$('body,html').animate({
+				scrollTop: position.top
+			}, 1500);
+    	}
+    	
 		can_refresh = true;
     }
 
@@ -25,7 +30,7 @@ $(document).ready(function(){
     {
     	setTimeout(function() {
     		load_new_messages(true);
-		}, 3000);
+		}, 2500);
     }
 
     // Load More messages
@@ -85,10 +90,14 @@ $(document).ready(function(){
     else
     {
     	$('#chat_button').removeAttr('disabled');
-    	var position = $("#bottom_message").offset();
-		$('body').animate({
-			scrollTop: position.top
-		}, 1500);
+    	var offset = parseInt($('#offset').val());
+    	if(offset > 5)
+    	{
+    		var position = $("#bottom_message").offset();
+			$('body,html').animate({
+				scrollTop: position.top
+			}, 1500);
+    	}
     }
 
     // Login Form Submit
@@ -148,13 +157,17 @@ $(document).ready(function(){
 function load_new_messages(repeat_function)
 {
 	var last_id = $('.message_id:last').val();
-	
+	var total_messages = 0;
+	var new_count = 0;
 	$.ajax({
 		url : '/chat/load_new_messages',
 		type : 'GET',
 		data : {'last_id' : last_id},
 		success : function(data){
 			var json = JSON.parse(data);
+			var offset = parseInt($('#offset').val());
+			total_messages = offset + json.count;
+			new_count = json.count;
 			if(json.count > 0)
 			{
 				$.each(json.messages, function(index, value) {
@@ -167,19 +180,24 @@ function load_new_messages(repeat_function)
 							'</div>'+
 							'</div><input type="hidden" class="message_id" value="'+value.id+'">');
 				});
-				$('body,html').animate({
-					scrollTop: position.top
-				}, 1000);
 			}
 			
 		}
+	}).done(function(){
+		$('#offset').val(total_messages);
+    	if(total_messages > 5 && new_count > 0)
+    	{
+    		var position = $("#bottom_message").offset();
+			$('body,html').animate({
+				scrollTop: position.top
+			}, 1000);
+    	}
 	});
 
 	if(repeat_function)
 	{
-		var position = $("#bottom_message").offset();
 		setTimeout(function() {
     		load_new_messages(true);
-		}, 3000);
+		}, 2500);
 	}
 }

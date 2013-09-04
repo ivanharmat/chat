@@ -12,7 +12,7 @@ class Chat extends CI_Controller {
 	{
 		$data = array(
 			'main_content' => 'chat/index',
-			'js' => array('chat'),
+			'js' => array('chat.js?v1.1'),
 			'common' => $this->general_model->load_common_data()
 		);
 		$data['client_logged_in'] = ($this->session->userdata('client_logged_in') === TRUE) ? true : false;
